@@ -9,7 +9,8 @@ A collection of PHP serialization helpers with a consistent interface for each.
 Available Classes
 =================
 
-* Json
+* Json (using the native json_* functions)
+* Yaml (using the Symfony Yaml component)
 
 
 Interface

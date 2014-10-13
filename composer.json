@@ -2,7 +2,7 @@
     "name": "duncan3dc/serial",
     "type": "library",
     "description": "Consistent serialization helpers for multiple backends",
-    "keywords": ["serialization", "serialisation", "serializer", "serialiser", "json"],
+    "keywords": ["serialization", "serialisation", "serializer", "serialiser", "json", "yaml"],
     "homepage": "https://github.com/duncan3dc/serial",
     "license": "Apache-2.0",
     "authors": [{
@@ -14,6 +14,7 @@
     "require": {
         "duncan3dc/domparser": ">=1.3.1",
         "duncan3dc/helpers": ">=1.3.6",
+        "symfony/yaml": ">=2.5.0",
         "php": ">=5.4.0"
     },
     "autoload": {
