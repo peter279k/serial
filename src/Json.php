@@ -4,83 +4,44 @@ namespace duncan3dc\Serial;
 
 use duncan3dc\Serial\Exceptions\JsonException;
 
-class Json implements SerialInterface
+class Json extends AbstractSerial
 {
-
-    /**
-     * Convert the passed variable between array and json (depending on the type passed).
-     *
-     * $options:
-     * - bool "cleanup" Whether values should be trimmed and falsy values removed (default: false)
-     *
-     * @param array|string The data to convert
-     * @param array An array of options (see above)
-     *
-     * @return string|array
-     */
-    public static function convert($data, $options = null)
-    {
-        $options = Helper::getOptions($options, [
-            "cleanup"   =>  false,
-        ]);
-
-        # If the data is an array the assume we are encoding it
-        if (is_array($data)) {
-            if ($options["cleanup"]) {
-                $data = Helper::cleanupArray($data);
-            }
-            return static::encode($data);
-
-        # If the data isn't an array then assume we decoding it
-        } else {
-            $array = static::decode($data);
-            if ($options["cleanup"]) {
-                $array = Helper::cleanupArray($array);
-            }
-            return $array;
-        }
-    }
-
 
     /**
      * Convert an array to a JSON string.
      *
-     * @param array The data to encode
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public static function encode($data)
+    public static function encode($array)
     {
-        if (count($data) < 1) {
+        if (count($array) < 1) {
             return "";
         }
 
-        $json = json_encode($data);
+        $string = json_encode($array);
 
         static::checkLastError();
 
-        return $json;
+        return $string;
     }
 
 
     /**
      * Convert a JSON string to an array.
      *
-     * @param array The data to decode
-     *
-     * @return array
+     * {@inheritDoc}
      */
-    public static function decode($json)
+    public static function decode($string)
     {
-        if (!$json) {
+        if (!$string) {
             return [];
         }
 
-        $data = json_decode($json, true);
+        $array = json_decode($string, true);
 
         static::checkLastError();
 
-        return $data;
+        return $array;
     }
 
 
@@ -102,53 +63,5 @@ class Json implements SerialInterface
         $message = json_last_error_msg();
 
         throw new JsonException("JSON Error: " . $message, $error);
-    }
-
-
-    /**
-     * Convert an array to a JSON string, and then write it to a file.
-     * Attempts to create the directory if it does not exist.
-     *
-     * @param string The path to the file to write
-     * @param array The data to decode
-     *
-     * @return void
-     */
-    public static function encodeToFile($path, $data)
-    {
-        $json = static::encode($data);
-
-        # Ensure the directory exists
-        $directory = pathinfo($path, PATHINFO_DIRNAME);
-        if (!is_dir($directory)) {
-            mkdir($directory, 0775, true);
-        }
-
-        if (file_put_contents($path, $json) === false) {
-            throw new JsonException("Failed to write the file (" . $path . ")");
-        }
-    }
-
-
-    /**
-     * Read a JSON string from a file and convert it to an array.
-     *
-     * @param string The path of the file to read
-     *
-     * @return array
-     */
-    public static function decodeFromFile($path)
-    {
-        if (!is_file($path)) {
-            throw new JsonException("File does not exist (" . $path . ")");
-        }
-
-        $json = file_get_contents($path);
-
-        if ($json === false) {
-            throw new JsonException("Failed to read the file (" . $path . ")");
-        }
-
-        return static::decode($json);
     }
 }
