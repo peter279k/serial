@@ -17,3 +17,59 @@ Interface
 =========
 
 All serialization classes implement the interface [duncan3dc\Serial\SerialInterface](src/SerialInterface.php)
+
+
+Examples
+========
+
+Convert array data to string format
+```php
+use duncan3dc\Serial\Json;
+$data = BusinessLogic::getDataAsArray();
+$json = Json::encode($data);
+```
+
+Convert string formatted data to an array
+```php
+use duncan3dc\Serial\Yaml;
+$yaml = Api::getYamlResponse($request);
+$response = Yaml::decode($yaml);
+```
+
+Convient methods to serialize and store data on disk
+```php
+use duncan3dc\Serial\Json;
+$filename = "/tmp/file.json";
+$data = BusinessLogic::getDataAsArray();
+Json::encodeToFile($filename, $data);
+```
+
+Retrieve previously stored data from disk
+```php
+use duncan3dc\Serial\Json;
+$filename = "/tmp/file.json";
+$data = Json::decodeFromFile($filename);
+```
+
+
+Serial Helper
+=============
+
+There is a Serial class that allows for juggling/guessing formats
+```php
+use duncan3dc\Serial\Serial;
+$data = BusinessLogic::getDataAsArray();
+$serial = new Serial($data);
+$json = (string)$serial->toJson();
+$yaml = (string)$serial->toYaml();
+$data = $serial->toArray();
+```
+
+All the methods return the instance making them chainable
+```php
+use duncan3dc\Serial\Serial;
+$json = Api::getJsonResponse($request);
+$yaml = (new Serial($json))->fromJson()->toYaml();
+```
+
+Then serialized string is available by casting the Serial class to a string, and php array is available by calling the toArray() method
