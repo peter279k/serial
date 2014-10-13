@@ -4,7 +4,7 @@ namespace duncan3dc\Serial;
 
 use duncan3dc\Serial\Exceptions\JsonException;
 
-class Json
+class Json implements SerialInterface
 {
 
     /**
