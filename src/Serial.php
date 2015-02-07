@@ -50,7 +50,7 @@ class Serial
 
             # If we don't know the current format of the data then we can't do anything
             if (!$this->format) {
-                throw new SerialException("Unknown input format, you must specify by calling ->fromJson() or ->fromYaml()");
+                throw new SerialException("Unknown input format, you must specify by calling ->fromJson(), ->fromYaml() or ->fromPhp()");
             }
 
             # If the current data is not in array format then convert it now

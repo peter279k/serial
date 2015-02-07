@@ -22,7 +22,7 @@ class SerialTest extends \PHPUnit_Framework_TestCase
     public function testMultipleFormats()
     {
         $data = ["one" => 1, "two" => 2];
-        $this->assertSame($data, (new Serial($data))->toJson()->toYaml()->toArray());
+        $this->assertSame($data, (new Serial($data))->toJson()->toPhp()->toArray());
     }
 
 
@@ -44,5 +44,12 @@ class SerialTest extends \PHPUnit_Framework_TestCase
     {
         $data = "one: 1\n";
         $this->assertSame($data, (new Serial($data))->fromYaml()->toJson()->toYaml()->__toString());
+    }
+
+
+    public function testPhpInit()
+    {
+        $data = 's:4:"test";';
+        $this->assertSame($data, (new Serial($data))->fromPhp()->toJson()->toYaml()->toPhp()->__toString());
     }
 }
