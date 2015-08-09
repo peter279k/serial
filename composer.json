@@ -19,5 +19,8 @@
     },
     "autoload": {
         "psr-4": {"duncan3dc\\Serial\\": "src/"}
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
     }
 }
