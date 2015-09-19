@@ -15,6 +15,8 @@ class Yaml extends AbstractSerial
      */
     public static function encode($array)
     {
+        $array = static::asArray($array);
+
         if (count($array) < 1) {
             return "";
         }
@@ -31,9 +33,15 @@ class Yaml extends AbstractSerial
     public static function decode($string)
     {
         if (!$string) {
-            return [];
+            return new ArrayObject;
         }
 
-        return SymfonyYaml::parse($string);
+        $array = SymfonyYaml::parse($string);
+
+        if (!is_array($array)) {
+            $array = [];
+        }
+
+        return ArrayObject::make($array);
     }
 }

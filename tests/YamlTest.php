@@ -43,34 +43,34 @@ class YamlTest extends \PHPUnit_Framework_TestCase
 
     public function testDecodeEmpty1()
     {
-        $this->assertSame([], Yaml::decode(null));
+        $this->assertSame([], Yaml::decode(null)->asArray());
     }
     public function testDecodeEmpty2()
     {
-        $this->assertSame([], Yaml::decode(""));
+        $this->assertSame([], Yaml::decode("")->asArray());
     }
     public function testDecodeEmpty3()
     {
-        $this->assertSame([], Yaml::decode(0));
+        $this->assertSame([], Yaml::decode(0)->asArray());
     }
     public function testDecodeEmpty4()
     {
-        $this->assertSame([], Yaml::decode("0"));
+        $this->assertSame([], Yaml::decode("0")->asArray());
     }
 
 
     public function testDecodeString1()
     {
-        $this->assertSame("test", Yaml::decode('"test"'));
+        $this->assertSame([], Yaml::decode('"test"')->asArray());
     }
 
 
     public function testDecodeArray1()
     {
-        $this->assertSame(["one" => 1], Yaml::decode("one: 1"));
+        $this->assertSame(["one" => 1], Yaml::decode("one: 1")->asArray());
     }
     public function testDecodeArray2()
     {
-        $this->assertSame(["one" => "1"], Yaml::decode("one: '1'"));
+        $this->assertSame(["one" => "1"], Yaml::decode("one: '1'")->asArray());
     }
 }

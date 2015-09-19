@@ -14,6 +14,8 @@ class Json extends AbstractSerial
      */
     public static function encode($array)
     {
+        $array = static::asArray($array);
+
         if (count($array) < 1) {
             return "";
         }
@@ -34,14 +36,18 @@ class Json extends AbstractSerial
     public static function decode($string)
     {
         if (!$string) {
-            return [];
+            return new ArrayObject;
         }
 
         $array = json_decode($string, true);
 
         static::checkLastError();
 
-        return $array;
+        if (!is_array($array)) {
+            $array = [];
+        }
+
+        return ArrayObject::make($array);
     }
 
 

@@ -43,34 +43,34 @@ class PhpTest extends \PHPUnit_Framework_TestCase
 
     public function testDecodeEmpty1()
     {
-        $this->assertSame([], Php::decode(null));
+        $this->assertSame([], Php::decode(null)->asArray());
     }
     public function testDecodeEmpty2()
     {
-        $this->assertSame([], Php::decode(""));
+        $this->assertSame([], Php::decode("")->asArray());
     }
     public function testDecodeEmpty3()
     {
-        $this->assertSame([], Php::decode(0));
+        $this->assertSame([], Php::decode(0)->asArray());
     }
     public function testDecodeEmpty4()
     {
-        $this->assertSame([], Php::decode("0"));
+        $this->assertSame([], Php::decode("0")->asArray());
     }
 
 
     public function testDecodeString1()
     {
-        $this->assertSame("test", Php::decode('s:4:"test";'));
+        $this->assertSame([], Php::decode('s:4:"test";')->asArray());
     }
 
 
     public function testDecodeArray1()
     {
-        $this->assertSame(["one" => 1], Php::decode('a:1:{s:3:"one";i:1;}'));
+        $this->assertSame(["one" => 1], Php::decode('a:1:{s:3:"one";i:1;}')->asArray());
     }
     public function testDecodeArray2()
     {
-        $this->assertSame(["one" => "1"], Php::decode('a:1:{s:3:"one";s:1:"1";}'));
+        $this->assertSame(["one" => "1"], Php::decode('a:1:{s:3:"one";s:1:"1";}')->asArray());
     }
 }

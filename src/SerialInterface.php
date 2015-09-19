@@ -8,7 +8,7 @@ interface SerialInterface
     /**
      * Convert an array to a serial string.
      *
-     * @param array The data to encode
+     * @param array|ArrayObject The data to encode
      *
      * @return string
      */
@@ -20,7 +20,7 @@ interface SerialInterface
      *
      * @param array The data to decode
      *
-     * @return array
+     * @return ArrayObject
      */
     public static function decode($string);
 
@@ -31,7 +31,7 @@ interface SerialInterface
      * Attempts to create the directory if it does not exist.
      *
      * @param string The path to the file to write
-     * @param array The data to decode
+     * @param array|ArrayObject The data to decode
      *
      * @return void
      */
@@ -43,7 +43,7 @@ interface SerialInterface
      *
      * @param string The path of the file to read
      *
-     * @return array
+     * @return ArrayObject
      */
     public static function decodeFromFile($path);
 }
