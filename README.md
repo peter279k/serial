@@ -12,6 +12,7 @@ Available Classes
 
 * Json (using the native json_* functions)
 * Yaml (using the Symfony Yaml component)
+* Php (using the native serialize/unserialize functions)
 
 
 Interface
@@ -61,8 +62,8 @@ There is a Serial class that allows for juggling/guessing formats
 use duncan3dc\Serial\Serial;
 $data = BusinessLogic::getDataAsArray();
 $serial = new Serial($data);
-$json = (string)$serial->toJson();
-$yaml = (string)$serial->toYaml();
+$json = (string) $serial->toJson();
+$yaml = (string) $serial->toYaml();
 $data = $serial->toArray();
 ```
 
