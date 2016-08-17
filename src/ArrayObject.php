@@ -47,4 +47,37 @@ class ArrayObject extends \ArrayObject
 
         return $array;
     }
+
+
+    /**
+     * Serialize this instance as JSON.
+     *
+     * @return string
+     */
+    public function asJson()
+    {
+        return Json::encode($this);
+    }
+
+
+    /**
+     * Serialize this instance as PHP.
+     *
+     * @return string
+     */
+    public function asPhp()
+    {
+        return Php::encode($this);
+    }
+
+
+    /**
+     * Serialize this instance as YAML.
+     *
+     * @return string
+     */
+    public function asYaml()
+    {
+        return Yaml::encode($this);
+    }
 }

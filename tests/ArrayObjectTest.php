@@ -115,4 +115,25 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
         ];
         $this->assertSame($data, ArrayObject::make($data)->asArray());
     }
+
+
+    public function testAsJson()
+    {
+        $data = ["one" => 1, "two" => 2];
+        $this->assertSame('{"one":1,"two":2}', ArrayObject::make($data)->asJson());
+    }
+
+
+    public function testAsPhp()
+    {
+        $data = ["one" => 1, "two" => 2];
+        $this->assertSame('a:2:{s:3:"one";i:1;s:3:"two";i:2;}', ArrayObject::make($data)->asPhp());
+    }
+
+
+    public function testAsYaml()
+    {
+        $data = ["one" => 1, "two" => 2];
+        $this->assertSame("one: 1\ntwo: 2\n", ArrayObject::make($data)->asYaml());
+    }
 }
