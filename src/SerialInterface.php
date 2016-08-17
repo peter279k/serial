@@ -6,20 +6,6 @@ interface SerialInterface
 {
 
     /**
-     * Convert the passed variable between array and the serial format (depending on the type passed).
-     *
-     * $options:
-     * - bool "cleanup" Whether values should be trimmed and falsy values removed (default: false)
-     *
-     * @param array|string The data to convert
-     * @param array An array of options (see above)
-     *
-     * @return string|array
-     */
-    public static function convert($data, $options = null);
-
-
-    /**
      * Convert an array to a serial string.
      *
      * @param array The data to encode
