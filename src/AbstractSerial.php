@@ -23,7 +23,7 @@ abstract class AbstractSerial implements SerialInterface
         }
 
         if (file_put_contents($path, $string) === false) {
-            throw new FileException("Failed to write the file (" . $path . ")");
+            throw new FileException("Failed to write the file: {$path}");
         }
     }
 
@@ -36,13 +36,13 @@ abstract class AbstractSerial implements SerialInterface
     public static function decodeFromFile($path)
     {
         if (!is_file($path)) {
-            throw new FileException("File does not exist (" . $path . ")");
+            throw new FileException("File does not exist: {$path}");
         }
 
         $string = file_get_contents($path);
 
         if ($string === false) {
-            throw new FileException("Failed to read the file (" . $path . ")");
+            throw new FileException("Failed to read the file: {$path}");
         }
 
         return static::decode($string);
