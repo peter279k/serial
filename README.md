@@ -54,24 +54,20 @@ $data = Json::decodeFromFile($filename);
 ```
 
 
-Serial Helper
-=============
+ArrayObject
+===========
 
-There is a Serial class that allows for juggling/guessing formats
+The `decode()` and `decodeFromFile()` methods return a custom [ArrayObject](http://php.net/manual/en/class.arrayobject.php).
+
+If you need a plain array you can get one like so:
 ```php
-use duncan3dc\Serial\Serial;
-$data = BusinessLogic::getDataAsArray();
-$serial = new Serial($data);
-$json = (string) $serial->toJson();
-$yaml = (string) $serial->toYaml();
-$data = $serial->toArray();
+$array = Json::decode($jsonString)->asArray();
 ```
 
-All the methods return the instance making them chainable
+There are also helper methods to convert to any of the available serialization formats.
 ```php
-use duncan3dc\Serial\Serial;
-$json = Api::getJsonResponse($request);
-$yaml = (new Serial($json))->fromJson()->toYaml();
+$data = Json::decode($jsonString);
+$yaml = $data->asYaml();
+$json = $data->asJson();
+$php = $data->asPhp();
 ```
-
-Then serialized string is available by casting the Serial class to a string, and php array is available by calling the toArray() method
