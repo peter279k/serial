@@ -1,6 +1,8 @@
 <?php
 
-namespace duncan3dc\Serial;
+namespace duncan3dc\SerialTests;
+
+use duncan3dc\Serial\Json;
 
 class JsonTest extends \PHPUnit_Framework_TestCase
 {

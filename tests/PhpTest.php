@@ -1,6 +1,8 @@
 <?php
 
-namespace duncan3dc\Serial;
+namespace duncan3dc\SerialTests;
+
+use duncan3dc\Serial\Php;
 
 class PhpTest extends \PHPUnit_Framework_TestCase
 {
