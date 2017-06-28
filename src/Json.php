@@ -20,6 +20,8 @@ class Json extends AbstractSerial
             return "";
         }
 
+        $array = parent::getArray($array);
+
         $string = json_encode($array);
 
         static::checkLastError();

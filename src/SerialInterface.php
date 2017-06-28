@@ -18,7 +18,7 @@ interface SerialInterface
     /**
      * Convert a serial string to an array.
      *
-     * @param array The data to decode
+     * @param array $string The data to decode
      *
      * @return ArrayObject
      */
@@ -41,7 +41,7 @@ interface SerialInterface
     /**
      * Read a serial string from a file and convert it to an array.
      *
-     * @param string The path of the file to read
+     * @param string $path The path of the file to read
      *
      * @return ArrayObject
      */

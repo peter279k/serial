@@ -21,6 +21,8 @@ class Yaml extends AbstractSerial
             return "";
         }
 
+        $array = $this->getArray($array);
+
         return SymfonyYaml::dump($array);
     }
 
