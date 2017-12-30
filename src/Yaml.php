@@ -17,7 +17,7 @@ class Yaml extends AbstractSerial
     {
         $array = static::asArray($array);
 
-        if (count($array) < 1) {
+        if (is_array($array) && count($array) < 1) {
             return "";
         }
 

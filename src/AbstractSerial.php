@@ -21,6 +21,10 @@ abstract class AbstractSerial implements SerialInterface
             return $data->asArray();
         }
 
+        if ($data === null) {
+            return [];
+        }
+
         return $data;
     }
 
