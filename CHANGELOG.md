@@ -1,6 +1,16 @@
 Changelog
 =========
 
+## 1.1.0 - 2018-04-09
+
+### Changed
+
+* [Support] Added support for PHP 7.1.
+* [Support] Added support for PHP 7.2.
+* [Support] Dropped support for HHVM.
+
+--------
+
 ## 1.0.0 - 2016-08-17
 
 ### Added
