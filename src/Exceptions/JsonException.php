@@ -2,6 +2,6 @@
 
 namespace duncan3dc\Serial\Exceptions;
 
-class JsonException extends SerialException
+class JsonException extends \RuntimeException implements SerialException
 {
 }

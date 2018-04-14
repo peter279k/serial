@@ -2,6 +2,6 @@
 
 namespace duncan3dc\Serial\Exceptions;
 
-class YamlException extends SerialException
+class YamlException extends \RuntimeException implements SerialException
 {
 }

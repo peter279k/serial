@@ -2,6 +2,6 @@
 
 namespace duncan3dc\Serial\Exceptions;
 
-class PhpException extends SerialException
+class PhpException extends \RuntimeException implements SerialException
 {
 }

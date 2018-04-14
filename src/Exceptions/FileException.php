@@ -2,6 +2,6 @@
 
 namespace duncan3dc\Serial\Exceptions;
 
-class FileException extends SerialException
+class FileException extends \RuntimeException implements SerialException
 {
 }
