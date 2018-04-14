@@ -20,9 +20,9 @@
         "satooshi/php-coveralls": "^2.0"
     },
     "autoload": {
-        "psr-4": {
-            "duncan3dc\\Serial\\": "src/",
-            "duncan3dc\\SerialTests\\": "tests/"
-        }
+        "psr-4": {"duncan3dc\\Serial\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"duncan3dc\\SerialTests\\": "tests/"}
     }
 }
