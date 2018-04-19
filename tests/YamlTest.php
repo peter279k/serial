@@ -2,32 +2,38 @@
 
 namespace duncan3dc\SerialTests;
 
+use duncan3dc\Serial\Exceptions\InvalidArgumentException;
 use duncan3dc\Serial\Yaml;
 
 class YamlTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testEncodeEmpty1()
-    {
-        $this->assertSame("", Yaml::encode(null));
-    }
-    public function testEncodeEmpty2()
+    public function testEncodeEmpty()
     {
         $this->assertSame("", Yaml::encode([]));
     }
-    public function testEncodeEmpty3()
-    {
-        $this->assertSame("0", Yaml::encode(0));
-    }
-    public function testEncodeEmpty4()
-    {
-        $this->assertSame("''", Yaml::encode(""));
-    }
 
 
-    public function testEncodeString1()
+    public function invalidValueProvider()
     {
-        $this->assertSame("test", Yaml::encode("test"));
+        $values = [
+            null,
+            0,
+            "",
+            "test",
+        ];
+        foreach ($values as $value) {
+            yield [$value];
+        }
+    }
+    /**
+     * @dataProvider invalidValueProvider
+     */
+    public function testEncodeInvalidValue($value)
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Only arrays or ArrayObjects can be encoded");
+        Yaml::encode($value);
     }
 
 
